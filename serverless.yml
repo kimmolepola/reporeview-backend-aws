@@ -6,7 +6,7 @@ provider:
   stage: dev4
 plugins:
   - serverless-dotenv-plugin
-  - serverless-bundle
+  - serverless-plugin-webpack
 functions:
   graphql:
     # this is formatted as <FILENAME>.<HANDLER>
