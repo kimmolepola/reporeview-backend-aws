@@ -14,7 +14,14 @@ const logStream = through(chunk => {
   logger.info(chunk.toString());
 });
 
-const app = createApp({ schema, context, logStream, config });
+const appx = createApp({ schema, context, logStream, config });
+
+const app = async function(event, context) {
+	    console.log("EVENT: \n" + JSON.stringify(event, null, 2));
+	    return context.logStreamName;
+};
+
+
 
 export default app;
 
