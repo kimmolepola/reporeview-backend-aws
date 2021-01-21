@@ -1,35 +1,26 @@
+const path = require('path');
  
 module.exports = {
-  // entry: set by the plugin
-  // output: set by the plugin
-  target: 'node',
+  target: "node", // Or "async-node"
+  mode: "production",
   externals: {
     'aws-sdk': 'aws-sdk', // Available on AWS Lambda
   },
+  entry: path.resolve(__dirname, './index.js'),
   module: {
     rules: [
       {
-        test: /\.html$/i,
-        loader: 'html-loader',
-      },
-      {
-        test: /\.js$/,
+        test: /\.(js)$/,
         exclude: /node_modules/,
-        loader: 'babel-loader',
-        query: {
-          presets: [
-            [
-              '@babel/preset-env',
-              {
-                targets: { node: '10.19' }, // Node version on AWS Lambda
-                useBuiltIns: 'entry',
-                modules: false,
-                loose: true,
-              },
-            ],
-          ],
-        },
-      },
-    ],
+        use: ['babel-loader']
+      }
+    ]
   },
-};
+  resolve: {
+    extensions: ['*', '.js']
+  },
+  output: {
+    path: path.resolve(__dirname, './dist'),
+    filename: 'bundle.js',
+  },
+}
