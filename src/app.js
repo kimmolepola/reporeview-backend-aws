@@ -54,7 +54,9 @@ export default ({ logStream, context, schema, config } = {}) => {
 
   const apolloServer = new ApolloServer({
     schema,
-    playground: true,
+    playground: {
+      endpoint: '/prod/graphql',
+    },
     introspection: true,
     formatError: createApolloErrorFormatter(context.logger),
     context: ({ ctx }) => {
