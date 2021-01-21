@@ -1,4 +1,4 @@
-import app from './src/main';
+const app = require('./lib/main');
 
 exports.handler = app;
 

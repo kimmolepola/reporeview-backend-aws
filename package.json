@@ -20,11 +20,13 @@
     "initdatabase": "nodetouch database.sqlite",
     "build": "npm run initdatabase && npm run migrate:latest && npm run seed:run",
     "seed:make": "knex seed:make",
-    "seed:run": "knex seed:run"
+    "seed:run": "knex seed:run",
+    "deploy": "npx babel src --out-dir lib && serverless deploy -f graphql"
   },
   "license": "MIT",
   "dependencies": {
     "@babel/polyfill": "^7.12.1",
+    "@babel/runtime": "^7.12.5",
     "@koa/cors": "^3.0.0",
     "apollo-server": "^2.10.1",
     "apollo-server-koa": "^2.10.1",
@@ -55,6 +57,7 @@
   "devDependencies": {
     "@babel/cli": "^7.12.10",
     "@babel/core": "^7.12.10",
+    "@babel/plugin-transform-runtime": "^7.12.10",
     "@babel/preset-env": "^7.12.11",
     "babel-eslint": "^10.0.3",
     "eslint": "^6.8.0",
@@ -66,8 +69,6 @@
     "serverless": "^2.19.0",
     "serverless-bundle": "^4.2.0",
     "serverless-dotenv-plugin": "^3.1.0",
-    "serverless-webpack": "^5.3.5",
-    "webpack": "^5.16.0",
-    "webpack-cli": "^4.4.0"
+    "serverless-webpack": "^5.3.5"
   }
 }
