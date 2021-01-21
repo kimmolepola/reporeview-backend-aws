@@ -6,7 +6,16 @@ provider:
   stage: dev4
 plugins:
   - serverless-dotenv-plugin
-  - serverless-plugin-webpack
+  - serverless-webpack
+custom:
+  webpack:
+    includeModules:
+      forceExclude:
+        - mssql
+        - mysql
+        - oracledb
+        - postgres
+        - redshift
 functions:
   graphql:
     # this is formatted as <FILENAME>.<HANDLER>

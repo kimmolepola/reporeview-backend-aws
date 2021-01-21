@@ -16,8 +16,12 @@ const logStream = through(chunk => {
 
 const app = createApp({ schema, context, logStream, config });
 
+export default app;
+
+/*
 const server = http.createServer(app.callback()).listen(config.port);
 
 server.on('listening', () => {
   logger.info(`Server listening to port ${config.port}`);
 });
+*/
