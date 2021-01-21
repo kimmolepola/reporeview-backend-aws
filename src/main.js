@@ -1,5 +1,6 @@
 import through from 'through2';
-import http from 'http';
+// import http from 'http';
+const serverlessKoa = require('aws-serverless-koa');
 
 import createApp from './app';
 import createContext from './context';
@@ -14,16 +15,9 @@ const logStream = through(chunk => {
   logger.info(chunk.toString());
 });
 
-const appx = createApp({ schema, context, logStream, config });
+const app = createApp({ schema, context, logStream, config });
 
-const app = async function(event, context) {
-	    console.log("EVENT: \n" + JSON.stringify(event, null, 2));
-	    return context.logStreamName;
-};
-
-
-
-export default app;
+module.exports = serverlessKoa(app);
 
 /*
 const server = http.createServer(app.callback()).listen(config.port);
